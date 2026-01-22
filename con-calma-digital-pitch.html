@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Con Calma Digital - Investor Pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --terracotta: #D17B5C;
+            --terracotta-dark: #C26A4B;
+            --sage: #8BA888;
+            --cream: #F5F1E8;
+            --charcoal: #2C3333;
+            --soft-gray: #6B7280;
+            --gentle-blue: #7BA8B8;
+            --deep-navy: #1a1f2e;
+            --warm-dark: #2a2520;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--warm-dark) 0%, var(--deep-navy) 100%);
+            color: var(--cream);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 4rem;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-content {
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        /* Slide 1 - Vision */
+        .slide-1 h1 {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(52px, 8.5vw, 96px);
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--cream);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .slide-1.active h1 {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .slide-1 .subtitle {
+            font-size: clamp(20px, 2.5vw, 32px);
+            color: var(--sage);
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-1.active .subtitle {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+        
+        .slide-1 .tagline {
+            font-size: clamp(16px, 1.8vw, 22px);
+            color: var(--terracotta);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-1.active .tagline {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+        
+        /* Slide 2 - Market */
+        .slide-2 .market-title {
+            font-size: clamp(20px, 2.5vw, 28px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-2.active .market-title {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .slide-2 .market-statement {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(36px, 5.5vw, 68px);
+            font-weight: 400;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .slide-2.active .market-statement {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        
+        .slide-2 .market-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .slide-2 .market-stat {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-2.active .market-stat:nth-child(1) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+        
+        .slide-2.active .market-stat:nth-child(2) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+        
+        .slide-2.active .market-stat:nth-child(3) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+        
+        .market-stat-number {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(52px, 6.5vw, 80px);
+            font-weight: 300;
+            color: var(--terracotta);
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        
+        .market-stat-label {
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--cream);
+            line-height: 1.4;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .market-stat-description {
+            font-size: clamp(14px, 1.5vw, 18px);
+            color: var(--soft-gray);
+            line-height: 1.5;
+        }
+        
+        /* Slide 3 - Problem */
+        .slide-3 {
+            background: linear-gradient(135deg, rgba(209, 123, 92, 0.08) 0%, rgba(123, 168, 184, 0.08) 100%);
+        }
+        
+        .slide-3 .problem-label {
+            font-size: clamp(20px, 2.5vw, 28px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-3.active .problem-label {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .slide-3 .problem-statement {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(32px, 4.5vw, 56px);
+            font-weight: 400;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .slide-3.active .problem-statement {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        
+        .slide-3 .problem-points {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 900px;
+        }
+        
+        .slide-3 .problem-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .slide-3.active .problem-point:nth-child(1) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+        
+        .slide-3.active .problem-point:nth-child(2) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+        
+        .slide-3.active .problem-point:nth-child(3) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+        
+        .problem-icon {
+            font-size: clamp(28px, 3vw, 40px);
+            flex-shrink: 0;
+        }
+        
+        .problem-text {
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--cream);
+            line-height: 1.5;
+        }
+        
+        /* Slide 4 - Solution */
+        .slide-4 .solution-label {
+            font-size: clamp(20px, 2.5vw, 28px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-4.active .solution-label {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .slide-4 .solution-statement {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(36px, 5.5vw, 68px);
+            font-weight: 400;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin-bottom: 3.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .slide-4.active .solution-statement {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        
+        .slide-4 .solution-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .slide-4 .pillar {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-4.active .pillar:nth-child(1) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+        
+        .slide-4.active .pillar:nth-child(2) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+        
+        .slide-4.active .pillar:nth-child(3) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+        
+        .pillar-number {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(48px, 5vw, 64px);
+            color: var(--terracotta);
+            opacity: 0.3;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        
+        .pillar-title {
+            font-size: clamp(22px, 2.5vw, 28px);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+        
+        .pillar-description {
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--soft-gray);
+            line-height: 1.6;
+        }
+        
+        /* Slide 5 - Business Model */
+        .slide-5 .model-label {
+            font-size: clamp(20px, 2.5vw, 28px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-5.active .model-label {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .slide-5 .model-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .slide-5 .model-section {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-5.active .model-section:nth-child(1) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        
+        .slide-5.active .model-section:nth-child(2) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+        
+        .slide-5.active .model-section:nth-child(3) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+        
+        .slide-5.active .model-section:nth-child(4) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+        
+        .model-section-title {
+            font-size: clamp(20px, 2.5vw, 28px);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+        
+        .model-section-content {
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--soft-gray);
+            line-height: 1.6;
+        }
+        
+        .model-highlight {
+            color: var(--terracotta);
+            font-weight: 600;
+        }
+        
+        .model-metric {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            color: var(--sage);
+            font-weight: 300;
+            display: block;
+            margin: 0.5rem 0;
+        }
+        
+        /* Slide 6 - Traction */
+        .slide-6 {
+            background: linear-gradient(135deg, rgba(209, 123, 92, 0.1) 0%, rgba(139, 168, 136, 0.1) 100%);
+        }
+        
+        .slide-6 .traction-label {
+            font-size: clamp(20px, 2.5vw, 28px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-6.active .traction-label {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .slide-6 .traction-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .slide-6 .traction-item {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .slide-6.active .traction-item:nth-child(1) {
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        
+        .slide-6.active .traction-item:nth-child(2) {
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+        
+        .slide-6.active .traction-item:nth-child(3) {
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+        
+        .traction-number {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(56px, 7vw, 88px);
+            font-weight: 300;
+            color: var(--terracotta);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .traction-label-text {
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--cream);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .traction-description {
+            font-size: clamp(14px, 1.5vw, 18px);
+            color: var(--soft-gray);
+        }
+        
+        .slide-6 .traction-quote {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .slide-6.active .traction-quote {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+        
+        .traction-quote-text {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(22px, 3vw, 36px);
+            font-weight: 300;
+            line-height: 1.4;
+            font-style: italic;
+            color: var(--sage);
+        }
+        
+        /* Slide 7 - Growth */
+        .slide-7 .growth-label {
+            font-size: clamp(20px, 2.5vw, 28px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-7.active .growth-label {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .slide-7 .roadmap {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 900px;
+        }
+        
+        .slide-7 .roadmap-phase {
+            display: flex;
+            gap: 2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .slide-7.active .roadmap-phase:nth-child(1) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        
+        .slide-7.active .roadmap-phase:nth-child(2) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+        
+        .slide-7.active .roadmap-phase:nth-child(3) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+        
+        .roadmap-timeline {
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--terracotta);
+            font-weight: 700;
+            min-width: 140px;
+            flex-shrink: 0;
+        }
+        
+        .roadmap-content {
+            border-left: 2px solid var(--sage);
+            padding-left: 2rem;
+        }
+        
+        .roadmap-title {
+            font-size: clamp(22px, 2.5vw, 32px);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--cream);
+        }
+        
+        .roadmap-items {
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--soft-gray);
+            line-height: 1.7;
+        }
+        
+        /* Slide 8 - Closing */
+        .slide-8 {
+            background: linear-gradient(135deg, rgba(209, 123, 92, 0.12) 0%, rgba(139, 168, 136, 0.12) 100%);
+        }
+        
+        .slide-8 .closing-statement {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(44px, 6.5vw, 80px);
+            font-weight: 300;
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            margin-bottom: 3rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .slide-8.active .closing-statement {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        
+        .slide-8 .closing-subtitle {
+            font-size: clamp(20px, 2.5vw, 32px);
+            color: var(--sage);
+            text-align: center;
+            margin-bottom: 4rem;
+            line-height: 1.5;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-8.active .closing-subtitle {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+        
+        .slide-8 .ask-container {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .slide-8.active .ask-container {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+        
+        .slide-8 .ask-label {
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--soft-gray);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        .slide-8 .ask-amount {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(52px, 7vw, 88px);
+            color: var(--terracotta);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        
+        .slide-8 .ask-purpose {
+            font-size: clamp(16px, 1.8vw, 22px);
+            color: var(--cream);
+            line-height: 1.6;
+        }
+        
+        /* Progress indicator */
+        .progress {
+            position: fixed;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+        
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(245, 241, 232, 0.2);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        
+        .progress-dot:hover {
+            background: rgba(245, 241, 232, 0.4);
+            transform: scale(1.2);
+        }
+        
+        .progress-dot.active {
+            background: var(--terracotta);
+            width: 32px;
+            border-radius: 4px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem 1.5rem;
+            }
+            
+            .slide-2 .market-stats,
+            .slide-5 .model-grid,
+            .slide-6 .traction-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .slide-7 .roadmap-phase {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .roadmap-timeline {
+                min-width: auto;
+            }
+            
+            .progress {
+                bottom: 2rem;
+            }
+        }
+        
+        /* Touch feedback */
+        @media (hover: none) {
+            .progress-dot:active {
+                transform: scale(0.95);
+            }
+        }
+        
+        /* Background texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(209, 123, 92, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(123, 168, 184, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(139, 168, 136, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Vision -->
+        <div class="slide slide-1 active">
+            <div class="slide-content">
+                <h1>Poniendo la tecnología en manos de quienes construyeron el mundo.</h1>
+                <div class="subtitle">
+                    Una academia de competencias digitales diseñada para personas mayores de 60 años. 
+                    Porque la experiencia de toda una vida merece las herramientas del futuro.
+                </div>
+                <div class="tagline">CON CALMA DIGITAL</div>
+            </div>
+        </div>
+        
+        <!-- Slide 2: Market -->
+        <div class="slide slide-2">
+            <div class="slide-content">
+                <div class="market-title">El Mercado</div>
+                <div class="market-statement">
+                    La brecha digital más grande está en quienes más la necesitan cerrar.
+                </div>
+                <div class="market-stats">
+                    <div class="market-stat">
+                        <span class="market-stat-number">28M</span>
+                        <div class="market-stat-label">Latinoamericanos 60+</div>
+                        <div class="market-stat-description">
+                            Con recursos, tiempo disponible y necesidad urgente de competencias digitales
+                        </div>
+                    </div>
+                    <div class="market-stat">
+                        <span class="market-stat-number">$8B</span>
+                        <div class="market-stat-label">Mercado TAM</div>
+                        <div class="market-stat-description">
+                            Educación digital para adultos mayores en Latinoamérica
+                        </div>
+                    </div>
+                    <div class="market-stat">
+                        <span class="market-stat-number">89%</span>
+                        <div class="market-stat-label">Excluidos digitales</div>
+                        <div class="market-stat-description">
+                            Sienten que la tecnología no es para ellos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Problem -->
+        <div class="slide slide-3">
+            <div class="slide-content">
+                <div class="problem-label">El Problema</div>
+                <div class="problem-statement">
+                    La educación digital ignora a una generación entera.
+                </div>
+                <div class="problem-points">
+                    <div class="problem-point">
+                        <div class="problem-icon">⚡</div>
+                        <div class="problem-text">
+                            <strong>Todo va demasiado rápido.</strong> Los cursos asumen fluidez digital que esta generación nunca tuvo oportunidad de desarrollar.
+                        </div>
+                    </div>
+                    <div class="problem-point">
+                        <div class="problem-icon">🚫</div>
+                        <div class="problem-text">
+                            <strong>Diseño excluyente.</strong> Interfaces, lenguaje y metodologías creadas para nativos digitales que alienan a adultos mayores.
+                        </div>
+                    </div>
+                    <div class="problem-point">
+                        <div class="problem-icon">💔</div>
+                        <div class="problem-text">
+                            <strong>Pérdida de autonomía.</strong> Sin estas competencias, dependen de otros para tareas básicas: pagar servicios, comunicarse, gestionar su vida.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Solution -->
+        <div class="slide slide-4">
+            <div class="slide-content">
+                <div class="solution-label">Nuestra Solución</div>
+                <div class="solution-statement">
+                    Academia de competencias digitales para adultos 60+
+                </div>
+                <div class="solution-pillars">
+                    <div class="pillar">
+                        <div class="pillar-number">01</div>
+                        <div class="pillar-title">Pedagogía Adaptada</div>
+                        <div class="pillar-description">
+                            Ritmo pausado, repetición sin vergüenza, lenguaje claro. 
+                            Tratamos a los estudiantes como personas inteligentes aprendiendo algo nuevo, no como "tecnófobos".
+                        </div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-number">02</div>
+                        <div class="pillar-title">Grupos Pequeños</div>
+                        <div class="pillar-description">
+                            Máximo 15 estudiantes por cohorte. Todos avanzan juntos, 
+                            nadie se queda atrás. Apoyo continuo y comunidad de aprendizaje.
+                        </div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-number">03</div>
+                        <div class="pillar-title">Aplicación Inmediata</div>
+                        <div class="pillar-description">
+                            De IA a banca digital, de WhatsApp a gestión documental. 
+                            Competencias que transforman su día a día desde la primera sesión.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Business Model -->
+        <div class="slide slide-5">
+            <div class="slide-content">
+                <div class="model-label">Modelo de Negocio</div>
+                <div class="model-grid">
+                    <div class="model-section">
+                        <div class="model-section-title">MVP de Validación</div>
+                        <div class="model-section-content">
+                            Curso en vivo "Introducción a ChatGPT"<br>
+                            2 sesiones × 2 horas<br>
+                            <span class="model-highlight">$1,500 MXN por estudiante</span><br>
+                            <span class="model-metric">~$75 USD</span>
+                        </div>
+                    </div>
+                    <div class="model-section">
+                        <div class="model-section-title">Expansión de Catálogo</div>
+                        <div class="model-section-content">
+                            <strong>Para negocio:</strong> Excel, presentaciones, email profesional<br>
+                            <strong>Para vida diaria:</strong> Banca digital, trámites, comunicación<br>
+                            <strong>Herramientas modernas:</strong> IA, redes sociales, seguridad digital
+                        </div>
+                    </div>
+                    <div class="model-section">
+                        <div class="model-section-title">Formato Híbrido</div>
+                        <div class="model-section-content">
+                            • <strong>En vivo:</strong> Premium, grupos pequeños ($1,500 MXN)<br>
+                            • <strong>Grabado:</strong> Accesible, autoguiado ($300-500 MXN)<br>
+                            • <strong>Membresía:</strong> Acceso continuo + comunidad
+                        </div>
+                    </div>
+                    <div class="model-section">
+                        <div class="model-section-title">Escalabilidad</div>
+                        <div class="model-section-content">
+                            Modelo replicable con instructores certificados<br>
+                            Contenido grabado con márgenes 90%+<br>
+                            <span class="model-highlight">Economía unitaria excepcional</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: MVP Goals -->
+        <div class="slide slide-6">
+            <div class="slide-content">
+                <div class="traction-label">Objetivos del MVP</div>
+                <div class="traction-grid">
+                    <div class="traction-item">
+                        <span class="traction-number">10</span>
+                        <div class="traction-label-text">Cohortes</div>
+                        <div class="traction-description">150 estudiantes en primeros 6 meses</div>
+                    </div>
+                    <div class="traction-item">
+                        <span class="traction-number">4.5+</span>
+                        <div class="traction-label-text">Satisfacción</div>
+                        <div class="traction-description">Meta: Rating de satisfacción /5</div>
+                    </div>
+                    <div class="traction-item">
+                        <span class="traction-number">80%</span>
+                        <div class="traction-label-text">Uso continuo</div>
+                        <div class="traction-description">Estudiantes usando IA post-curso</div>
+                    </div>
+                </div>
+                <div class="traction-quote">
+                    <div class="traction-quote-text">
+                        "Validar que el modelo funciona: producto-mercado fit, 
+                        retención excepcional, y casos de éxito documentados para escalar con confianza"
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Growth Plan -->
+        <div class="slide slide-7">
+            <div class="slide-content">
+                <div class="growth-label">Visión de Crecimiento</div>
+                <div class="roadmap">
+                    <div class="roadmap-phase">
+                        <div class="roadmap-timeline">2025</div>
+                        <div class="roadmap-content">
+                            <div class="roadmap-title">Validación y Producto</div>
+                            <div class="roadmap-items">
+                                • 10-15 cohortes en vivo (200+ estudiantes)<br>
+                                • Lanzar 5 cursos adicionales (Excel, banca digital, email, IA avanzada)<br>
+                                • Plataforma de cursos grabados operando<br>
+                                • Construir marca como líder en educación digital 60+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roadmap-phase">
+                        <div class="roadmap-timeline">2026</div>
+                        <div class="roadmap-content">
+                            <div class="roadmap-title">Escala Nacional</div>
+                            <div class="roadmap-items">
+                                • Equipo de 5-8 instructores certificados<br>
+                                • 2,000 estudiantes activos en México<br>
+                                • Partnerships con INAPAM, universidades, centros comunitarios<br>
+                                • Membresía activa con 500+ miembros recurrentes
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roadmap-phase">
+                        <div class="roadmap-timeline">2027-2028</div>
+                        <div class="roadmap-content">
+                            <div class="roadmap-title">Líder Regional</div>
+                            <div class="roadmap-items">
+                                • Expansión a Colombia, Argentina, Chile, Perú<br>
+                                • 10,000+ estudiantes graduados<br>
+                                • Programa corporativo B2B (upskilling de empleados senior)<br>
+                                • <strong>La academia de referencia para educación digital 60+ en LATAM</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Vision & Impact -->
+        <div class="slide slide-8">
+            <div class="slide-content">
+                <div class="closing-statement">
+                    La tecnología no es solo para los jóvenes.<br>
+                    Es para todos.
+                </div>
+                <div class="closing-subtitle">
+                    Imaginamos un mundo donde nadie se queda atrás. Donde tener 60, 70, u 80 años 
+                    no significa estar excluido del mundo digital. Donde la experiencia de toda una vida 
+                    se potencia con las herramientas del presente.
+                </div>
+                <div class="ask-container">
+                    <div class="ask-label">Nuestro Propósito</div>
+                    <div class="ask-purpose">
+                        Devolver autonomía, dignidad y poder a una generación que construyó el mundo<br>
+                        pero que la revolución digital dejó atrás.<br><br>
+                        <strong>Porque todos merecen las herramientas para vivir mejor.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Progress indicator -->
+    <div class="progress">
+        <div class="progress-dot active" data-slide="0"></div>
+        <div class="progress-dot" data-slide="1"></div>
+        <div class="progress-dot" data-slide="2"></div>
+        <div class="progress-dot" data-slide="3"></div>
+        <div class="progress-dot" data-slide="4"></div>
+        <div class="progress-dot" data-slide="5"></div>
+        <div class="progress-dot" data-slide="6"></div>
+        <div class="progress-dot" data-slide="7"></div>
+    </div>
+    
+    <script>
+        // Presentation logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progressDots = document.querySelectorAll('.progress-dot');
+        const totalSlides = slides.length;
+        
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function showSlide(index) {
+            // Boundary check
+            if (index < 0 || index >= totalSlides) return;
+            
+            // Update slides
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            
+            // Update progress dots
+            progressDots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                case 'ArrowDown':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    prevSlide();
+                    break;
+            }
+        });
+        
+        // Touch/swipe navigation
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    nextSlide();
+                } else {
+                    // Swipe right - previous slide
+                    prevSlide();
+                }
+            }
+        }
+        
+        // Progress dot click navigation
+        progressDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
+        // Prevent text selection during presentation
+        document.addEventListener('selectstart', (e) => {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

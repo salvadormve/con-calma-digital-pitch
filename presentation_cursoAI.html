@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Con Calma Digital - Presentación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --terracotta: #D17B5C;
+            --terracotta-dark: #C26A4B;
+            --sage: #8BA888;
+            --cream: #F5F1E8;
+            --charcoal: #2C3333;
+            --soft-gray: #6B7280;
+            --gentle-blue: #7BA8B8;
+            --deep-navy: #1a1f2e;
+            --warm-dark: #2a2520;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--warm-dark) 0%, var(--deep-navy) 100%);
+            color: var(--cream);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 4rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-content {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* Slide 1 - Opening */
+        .slide-1 h1 {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(48px, 8vw, 88px);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--cream);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-1.active h1 {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .slide-1 .tagline {
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--terracotta);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-1.active .tagline {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        /* Slide 2 - Problem */
+        .slide-2 .problem-statement {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 400;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-2.active .problem-statement {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .slide-2 .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .slide-2 .stat {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-2.active .stat:nth-child(1) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .slide-2.active .stat:nth-child(2) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        .slide-2.active .stat:nth-child(3) {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        .stat-number {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 300;
+            color: var(--terracotta);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: clamp(14px, 1.5vw, 18px);
+            color: var(--soft-gray);
+            line-height: 1.4;
+        }
+
+        /* Slide 3 - The Shift */
+        .slide-3 {
+            background: linear-gradient(135deg, rgba(209, 123, 92, 0.1) 0%, rgba(123, 168, 184, 0.1) 100%);
+        }
+
+        .slide-3 .shift-title {
+            font-size: clamp(20px, 2.5vw, 28px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-3.active .shift-title {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .slide-3 .shift-statement {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 400;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-3.active .shift-statement {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .slide-3 .shift-description {
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--soft-gray);
+            line-height: 1.6;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-3.active .shift-description {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        /* Slide 4 - The Product */
+        .slide-4 .product-intro {
+            font-size: clamp(20px, 2.5vw, 28px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-4.active .product-intro {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .slide-4 .outcomes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .slide-4 .outcome {
+            border-left: 3px solid var(--terracotta);
+            padding-left: 2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .slide-4.active .outcome:nth-child(1) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .slide-4.active .outcome:nth-child(2) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .slide-4.active .outcome:nth-child(3) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        .slide-4.active .outcome:nth-child(4) {
+            animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        .outcome-title {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--cream);
+        }
+
+        .outcome-description {
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--soft-gray);
+            line-height: 1.5;
+        }
+
+        /* Slide 5 - Proof */
+        .slide-5 .proof-label {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-5.active .proof-label {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .slide-5 .testimonial {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-5.active .testimonial {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .testimonial-quote {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 300;
+            line-height: 1.4;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--cream);
+        }
+
+        .testimonial-author {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--soft-gray);
+            font-weight: 400;
+        }
+
+        .testimonial-role {
+            font-size: clamp(14px, 1.5vw, 18px);
+            color: var(--sage);
+            margin-top: 0.5rem;
+        }
+
+        .slide-5 .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .metric {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .slide-5.active .metric:nth-child(1) {
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        .slide-5.active .metric:nth-child(2) {
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        .slide-5.active .metric:nth-child(3) {
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+        }
+
+        .metric-value {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 300;
+            color: var(--terracotta);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: clamp(14px, 1.5vw, 16px);
+            color: var(--soft-gray);
+        }
+
+        /* Slide 6 - Closing */
+        .slide-6 {
+            background: linear-gradient(135deg, rgba(209, 123, 92, 0.15) 0%, rgba(139, 168, 136, 0.15) 100%);
+        }
+
+        .slide-6 .closing-statement {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin-bottom: 3rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-6.active .closing-statement {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .slide-6 .cta-container {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .slide-6.active .cta-container {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .slide-6 .cta-text {
+            font-size: clamp(18px, 2.5vw, 28px);
+            color: var(--soft-gray);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .slide-6 .cta-details {
+            font-size: clamp(20px, 2.5vw, 32px);
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .slide-6 .cta-info {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--sage);
+            line-height: 1.6;
+        }
+
+        /* Progress indicator */
+        .progress {
+            position: fixed;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(245, 241, 232, 0.2);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .progress-dot:hover {
+            background: rgba(245, 241, 232, 0.4);
+            transform: scale(1.2);
+        }
+
+        .progress-dot.active {
+            background: var(--terracotta);
+            width: 32px;
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem 1.5rem;
+            }
+
+            .slide-2 .stats,
+            .slide-5 .metrics {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .slide-4 .outcome {
+                padding-left: 1rem;
+            }
+
+            .progress {
+                bottom: 2rem;
+            }
+        }
+
+        /* Touch feedback */
+        @media (hover: none) {
+            .progress-dot:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Background texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(209, 123, 92, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(123, 168, 184, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Opening -->
+        <div class="slide slide-1 active">
+            <div class="slide-content">
+                <h1>La tecnología no debería hacerte sentir dejado atrás.</h1>
+                <div class="tagline">Con Calma Digital</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide slide-2">
+            <div class="slide-content">
+                <div class="problem-statement">
+                    Miles de personas quieren usar IA,<br>
+                    pero todo va demasiado rápido.
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">67%</span>
+                        <span class="stat-label">Se siente excluido de la revolución digital</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">83%</span>
+                        <span class="stat-label">Abandonan tutoriales porque van muy rápido</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Años, con experiencia valiosa pero sin acceso a herramientas modernas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Shift -->
+        <div class="slide slide-3">
+            <div class="slide-content">
+                <div class="shift-title">El Cambio</div>
+                <div class="shift-statement">
+                    La IA debería enseñarse<br>
+                    como se enseña a un amigo.
+                </div>
+                <div class="shift-description">
+                    Con paciencia. Sin prisa. Sin términos técnicos. Sin hacerte sentir mal por preguntar.
+                    A tu ritmo, con el respeto que mereces.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Product -->
+        <div class="slide slide-4">
+            <div class="slide-content">
+                <div class="product-intro">Qué lograrás</div>
+                <div class="outcomes-grid">
+                    <div class="outcome">
+                        <div class="outcome-title">Confianza real</div>
+                        <div class="outcome-description">Usarás ChatGPT sin dudas, sin depender de otros</div>
+                    </div>
+                    <div class="outcome">
+                        <div class="outcome-title">Aplicación práctica</div>
+                        <div class="outcome-description">Casos específicos para tu vida: trabajo, viajes, proyectos personales</div>
+                    </div>
+                    <div class="outcome">
+                        <div class="outcome-title">Comunidad de apoyo</div>
+                        <div class="outcome-description">Grupo pequeño (máx 15 personas) donde nadie se queda atrás</div>
+                    </div>
+                    <div class="outcome">
+                        <div class="outcome-title">Autonomía digital</div>
+                        <div class="outcome-description">Ya no te sentirás excluido del mundo moderno</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Proof -->
+        <div class="slide slide-5">
+            <div class="slide-content">
+                <div class="proof-label">Lo que dicen nuestros estudiantes</div>
+                <div class="testimonial">
+                    <div class="testimonial-quote">
+                        "¿Por qué nadie nos lo había explicado así? Ahora uso ChatGPT todos los días
+                        y ya no me siento fuera de lugar."
+                    </div>
+                    <div class="testimonial-author">María Elena R.</div>
+                    <div class="testimonial-role">62 años, Empresaria</div>
+                </div>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-value">4.9/5</span>
+                        <span class="metric-label">Satisfacción</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">100%</span>
+                        <span class="metric-label">Terminan el curso</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">95%</span>
+                        <span class="metric-label">Usan IA diariamente después</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Closing -->
+        <div class="slide slide-6">
+            <div class="slide-content">
+                <div class="closing-statement">
+                    No te quedes atrás.<br>
+                    Aprende a tu ritmo.
+                </div>
+                <div class="cta-container">
+                    <div class="cta-text">
+                        Próximo curso en vivo
+                    </div>
+                    <div class="cta-details">
+                        6 y 7 de Febrero | 12:00-14:00 hrs
+                    </div>
+                    <div class="cta-info">
+                        Solo 15 lugares · $1,000 MXN<br>
+                        (oferta hasta 31 de enero)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress indicator -->
+    <div class="progress">
+        <div class="progress-dot active" data-slide="0"></div>
+        <div class="progress-dot" data-slide="1"></div>
+        <div class="progress-dot" data-slide="2"></div>
+        <div class="progress-dot" data-slide="3"></div>
+        <div class="progress-dot" data-slide="4"></div>
+        <div class="progress-dot" data-slide="5"></div>
+    </div>
+
+    <script>
+        // Presentation logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progressDots = document.querySelectorAll('.progress-dot');
+        const totalSlides = slides.length;
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function showSlide(index) {
+            // Boundary check
+            if (index < 0 || index >= totalSlides) return;
+
+            // Update slides
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update progress dots
+            progressDots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                case 'ArrowDown':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    prevSlide();
+                    break;
+            }
+        });
+
+        // Touch/swipe navigation
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    nextSlide();
+                } else {
+                    // Swipe right - previous slide
+                    prevSlide();
+                }
+            }
+        }
+
+        // Progress dot click navigation
+        progressDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Prevent text selection during presentation
+        document.addEventListener('selectstart', (e) => {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
