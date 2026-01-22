@@ -434,6 +434,53 @@
             border-radius: 4px;
         }
 
+        /* Home button */
+        .home-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(245, 241, 232, 0.2);
+            border-radius: 8px;
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .home-button:hover {
+            background: rgba(209, 123, 92, 0.15);
+            border-color: var(--terracotta);
+            transform: translateX(-4px);
+        }
+
+        .home-button::before {
+            content: '←';
+            font-size: 1.2em;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .home-button:hover::before {
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .home-button {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.6rem 1rem;
+                font-size: 12px;
+            }
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -513,6 +560,7 @@
     </style>
 </head>
 <body>
+    <a href="index.html" class="home-button">Inicio</a>
     <div class="presentation">
         <!-- Slide 1: Opening -->
         <div class="slide slide-1 active">
